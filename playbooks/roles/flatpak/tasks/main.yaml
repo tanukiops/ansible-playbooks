@@ -1,0 +1,4 @@
+---
+- name: "Install flatpaks"
+  ansible.builtin.include_tasks:
+    file: install-flatpaks.yaml

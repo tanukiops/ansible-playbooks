@@ -1,0 +1,26 @@
+---
+- name: "Check if kitty is already installed"
+  ansible.builtin.shell:
+    cmd: "/var/home/{{ main_user }}/.local/kitty.app/bin/kitty --version"
+  register: result
+  failed_when: result.rc != 127 and result.rc != 0
+  changed_when: false
+
+- name: "Download kitty install script"
+  ansible.builtin.get_url:
+    url: "{{ kitty_install_url }}"
+    dest: /tmp/kitty_install
+  when: result.rc != 0
+
+- name: "Make install script executable"
+  ansible.builtin.file:
+    dest: /tmp/kitty_install
+    mode: a+x
+  when: result.rc != 0
+  
+- name: "Install kitty"
+  ansible.builtin.shell:
+    cmd: /tmp/kitty_install
+  when: result.rc != 0
+    
+

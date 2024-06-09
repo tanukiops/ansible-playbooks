@@ -3,6 +3,15 @@ workstations:
     192.168.122.180:
       main_user: tveerdewegh
       main_group: tveerdewegh
+      required_flatpaks:
+        - com.github.IsmaelMartinez.teams_for_linux
+        - com.bitwarden.desktop
+        - com.discordapp.Discord
+        - com.github.tchx84.Flatseal
+        - com.spotify.Client
+        - io.github.mahmoudbahaa.outlook_for_linux
+        - md.obsidian.Obsidian
+        - org.remmina.Remmina
       required_apps:
         - nvim
         - argocd

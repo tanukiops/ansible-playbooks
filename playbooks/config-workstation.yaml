@@ -4,6 +4,8 @@
   user: "{{ main_user }}"
   roles:
     - homebrew
+    - flatpak
+    - kitty
   tasks:
     - name: configure Work VPN
       become: true
