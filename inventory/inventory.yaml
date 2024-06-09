@@ -1,0 +1,36 @@
+workstations:
+  hosts:
+    192.168.122.180:
+      required_apps:
+        - nvim
+        - argocd
+        - velero
+        - ansible
+        - awscli
+        - bat
+        - cilium-cli
+        - hubble
+        - go
+        - go@1.21
+        - golangci-lint
+        - helm
+        - k9s
+        - kubeconform
+        - kubent
+        - kubectl
+        - kustomize
+        - lazygit
+        - minikube
+        - node
+        - openssl@3
+        - opentofu
+        - operator-sdk
+        - ripgrep
+        - rust
+        - stern
+        - stow
+        - tldr
+        - unzip
+        - yq
+        - jq
+        - fd

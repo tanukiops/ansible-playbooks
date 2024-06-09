@@ -1,0 +1,25 @@
+---
+# TODO: check if homebrew is already installed and skip installation script ...
+- name: "Download homebrew install script"
+  ansible.builtin.get_url:
+    url: "{{ install_url }}"
+    dest: /tmp/install
+- name: "Make home dir for linuxbrew"
+  become: true
+  ansible.builtin.file:
+    dest: /var/home/linuxbrew/
+    group: tveerdewegh
+    owner: tveerdewegh
+    state: directory
+- name: "Make install script executable"
+  ansible.builtin.file:
+    dest: /tmp/install
+    mode: a+x
+- name: "Install homebrew"
+  ansible.builtin.shell:
+    cmd: NONINTERACTIVE=1 /tmp/install
+- name: "Install apps"
+  ansible.builtin.include_tasks:
+    file: install-apps.yaml
+    
+
