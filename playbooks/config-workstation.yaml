@@ -4,3 +4,14 @@
   user: "{{ main_user }}"
   roles:
     - homebrew
+  tasks:
+    - name: configure Work VPN
+      become: true
+      community.general.nmcli:
+        type: vpn
+        conn_name: UA VPN
+        vpn:
+          service-type: org.freedesktop.NetworkManager.openconnect
+          gateway: vpnmfa.uantwerpen.be
+        autoconnect: false
+        state: present
