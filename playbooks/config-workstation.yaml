@@ -3,6 +3,7 @@
   hosts: workstations
   user: "{{ main_user }}"
   roles:
+    - zsh
     - homebrew
     - flatpak
     - kitty

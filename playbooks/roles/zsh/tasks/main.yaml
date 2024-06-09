@@ -1,0 +1,6 @@
+---
+- name: "Install zsh as overlay"
+  become: true
+  community.general.rpm_ostree_pkg:
+    name: zsh
+    state: present

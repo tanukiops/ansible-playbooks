@@ -14,6 +14,8 @@ workstations:
         - org.remmina.Remmina
       required_apps:
         - nvim
+        - tmux
+        - stow
         - argocd
         - velero
         - ansible
