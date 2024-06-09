@@ -1,6 +1,8 @@
 workstations:
   hosts:
     192.168.122.180:
+      main_user: tveerdewegh
+      main_group: tveerdewegh
       required_apps:
         - nvim
         - argocd
@@ -26,7 +28,7 @@ workstations:
         - opentofu
         - operator-sdk
         - ripgrep
-        - rust
+        #- rust
         - stern
         - stow
         - tldr
