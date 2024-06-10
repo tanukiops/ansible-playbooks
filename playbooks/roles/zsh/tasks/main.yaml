@@ -4,3 +4,17 @@
   community.general.rpm_ostree_pkg:
     name: zsh
     state: present
+  register: result
+
+#reboot into the new tree.
+- name: reboot os
+  become: true
+  ansible.builtin.reboot:
+    reboot_timeout: 120
+  when: result.changed 
+
+- name: change user shell to zsh 
+  become: yes
+  user:
+    name: "{{ main_user }}"
+    shell: /bin/zsh
