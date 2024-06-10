@@ -18,3 +18,35 @@
           gateway: vpnmfa.uantwerpen.be
         autoconnect: false
         state: present
+        #clone config repo
+    - name: upload public key 
+      ansible.builtin.copy:
+        src: files/id_ecdsa.pub
+        dest: ~/.ssh/id_ecdsa.pub
+        owner: "{{ main_user }}"
+        group: "{{ main_user }}"
+        mode: '0600'
+
+    - name: upload private key 
+      ansible.builtin.copy:
+        src: files/id_ecdsa
+        dest: ~/.ssh/id_ecdsa
+        owner: "{{ main_user }}"
+        group: "{{ main_user }}"
+        mode: '0600'
+
+    - name: clone dotfiles repo
+      ansible.builtin.git:
+        repo: git@github.com:tanukiops/dotfiles.git 
+        dest: ~/.dotfiles
+      register: dotfiles_result
+    - name: stow dotfiles
+      ansible.builtin.shell:
+        cmd: "/var/home/linuxbrew/.linuxbrew/bin/stow -d $HOME/.dotfiles -t ~/ -S {{ item }}"
+      loop: "{{ stow }}"
+      when: dotfiles_result.changed
+
+    - name: clone scripts repo
+      ansible.builtin.git:
+        repo: git@github.com:tanukiops/scripts.git 
+        dest: ~/UA/scripts/
